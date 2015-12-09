@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: vagrant
+  password: vagrant
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: unioeste_app_tcc_development
+
+test:
+  <<: *default
+  database: unioeste_app_tcc_test
+
+production:
+  <<: *default
+  database: unioeste_app_tcc_production
+  username: unioeste_app_tcc
+  password: <%= ENV['UNIOESTE_APP_TCC_DATABASE_PASSWORD'] %>

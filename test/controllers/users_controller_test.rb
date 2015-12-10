@@ -2,44 +2,46 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   setup do
-    @user = User.new email: 'hismahil@gmail.com', password: '123456'
+    @user_new = new_user
+    @user = create_user
   end
 
-  test "should get index" do
+  test "requisicao da action index do User" do
     get :index
     assert_response :success
     assert_not_nil assigns(:users)
   end
 
-  test "should get new" do
+  test "requisicao da action new do User" do
     get :new
     assert_response :success
   end
 
-  test "should create user" do
+  test "requisicao da action create do User" do
+    
     assert_difference('User.count') do
-      post :create, user: { email: @user.email, password_hash: @user.password_hash, password_salt: @user.password_salt }
+      post :create, user: { email: @user_new.email, password: @user_new.password, password_confirmation: @user_new.password }
     end
-
+    
     assert_redirected_to user_path(assigns(:user))
   end
 
-  test "should show user" do
+  test "requisicao da action show do User" do
     get :show, id: @user
     assert_response :success
   end
 
-  test "should get edit" do
+  test "requisicao da action edit do User" do
     get :edit, id: @user
     assert_response :success
   end
 
-  test "should update user" do
-    patch :update, id: @user, user: { email: @user.email, password_hash: @user.password_hash, password_salt: @user.password_salt }
+  test "requisicao da action update do User" do
+    patch :update, id: @user, user: { email: @user.email, password: @user.password, password_confirmation: @user.password }
     assert_redirected_to user_path(assigns(:user))
   end
 
-  test "should destroy user" do
+  test "requisicao da action destroy do User" do
     assert_difference('User.count', -1) do
       delete :destroy, id: @user
     end

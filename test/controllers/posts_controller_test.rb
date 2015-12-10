@@ -2,50 +2,44 @@ require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
   setup do
-    @users = User.all
-
-    if @users.empty?
-      @users = User.create email: 'hismahil@gmail.com', password: '123456'
-    end
-
-    @post = Post.new title: 'Teste', text: 'texto', user_id: (@users.class == Array ? @users[0].id : @users.id)
+    @post = create_post
   end
 
-  test "should get index" do
+  test "requisicao da action index do Post" do
     get :index
     assert_response :success
     assert_not_nil assigns(:posts)
   end
 
-  test "should get new" do
+  test "requisicao da action new do Post" do
     get :new
     assert_response :success
   end
 
-  test "should create post" do
+  test "requisicao da action create do Post" do
     assert_difference('Post.count') do
-      post :create, post: { text: @post.text, title: @post.title, user_id: @post.user_id }
+      post :create, post: { text: @post.text, title: @post.title, user_id: @post.user.id }
     end
 
     assert_redirected_to post_path(assigns(:post))
   end
 
-  test "should show post" do
+  test "requisicao da action show do Post" do
     get :show, id: @post
     assert_response :success
   end
 
-  test "should get edit" do
+  test "requisicao da action edit do Post" do
     get :edit, id: @post
     assert_response :success
   end
 
-  test "should update post" do
-    patch :update, id: @post, post: { text: @post.text, title: @post.title, user_id: @post.user_id }
+  test "requisicao da action update do Post" do
+    patch :update, id: @post, post: { text: @post.text, title: @post.title, user_id: @post.user.id }
     assert_redirected_to post_path(assigns(:post))
   end
 
-  test "should destroy post" do
+  test "requisicao da action destroy do Post" do
     assert_difference('Post.count', -1) do
       delete :destroy, id: @post
     end

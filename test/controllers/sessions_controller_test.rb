@@ -1,18 +1,18 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
-  test "should get new" do
+  setup do
+    @user = get_user
+  end
+
+  test "renderiza a pagina de login new" do
     get :new
     assert_response :success
   end
 
-  test "should get create" do
-    get :create
-    assert_response :success
-  end
-
-  test "should get destroy" do
-    get :destroy
+  test "requisicao da action create session do usuario" do
+    post :create, params: { email: @user.email, password: @user.password }
+    #assert_redirected_to root_path
     assert_response :success
   end
 

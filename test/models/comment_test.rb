@@ -5,4 +5,9 @@ class CommentTest < ActiveSupport::TestCase
   #   assert true
   # end
 
+  test "nao precisa de comentario" do
+  	comment = Comment.new
+  	assert comment.save
+  end
+
 end

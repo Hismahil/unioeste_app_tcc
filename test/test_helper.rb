@@ -7,4 +7,45 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  	def get_user
+		users = User.all
+
+		if users.empty?
+			users = create_user
+		end
+		(users.class == Array ? users.first : users)
+	end
+
+	def create_post(op = {})
+		Post.create({ title: 'Post teste', text: 'askllassssquiwioqwoqwiowqioqwioqwioqwqwioqwioqwioqwioqw',
+			user: get_user}.merge(op))
+	end
+
+  # cria um user para update, destroy, edit, show
+	def create_user(op = {})
+    User.create({email: generate_email, password: '123456'}.merge(op))
+  end
+
+  # para o metodo create (email e unico)
+  def new_user(op = {})
+    User.new({email: generate_email, password: '123456'}.merge(op))
+  end
+
+    def char
+    	v = [ 'a', 'b', 'c', 'd' ]
+    	v[rand(v.size)]
+    end
+
+    def word(length)
+    	s = ""
+    	for i in 0..length
+    		s.concat char
+    	end
+    	s
+    end
+
+    def generate_email
+    	word(6).concat "@gmail.com"
+    end
 end

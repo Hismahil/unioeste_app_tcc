@@ -15,7 +15,10 @@ test:
   database: unioeste_app_tcc_test
 
 production:
-  <<: *default
-  database: unioeste_app_tcc_production
-  username: unioeste_app_tcc
-  password: <%= ENV['UNIOESTE_APP_TCC_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  socket: /var/run/mysqld/mysqld.sock
+  encoding: utf8
+  pool: 5
+  database: unioeste_app_tcc
+  username: vagrant
+  password: vagrant

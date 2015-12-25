@@ -4,14 +4,13 @@ lock '3.4.0'
 set :stage, :production
 set :application, 'unioeste_app_tcc'
 set :repo_url, 'https://github.com/Hismahil/unioeste_app_tcc.git'
+set :deploy_to, '/var/www/unioeste_app_tcc'
 set :scm, :git
 
 #tem q ficar mudando essa linha
-server "ec2-52-35-221-124.us-west-2.compute.amazonaws.com", :app, :web, :db, :primary => true
-
-set :deploy_to, '/var/www/unioeste_app_tcc'
-set :user, "ubuntu"
-ssh_options[:keys] = "c:/aws/tcc.pem"
+role :app, %w{ec2-52-34-163-205.us-west-2.compute.amazonaws.com}
+role :web, %w{ec2-52-34-163-205.us-west-2.compute.amazonaws.com}
+role :db,  %w{ec2-52-34-163-205.us-west-2.compute.amazonaws.com}
 
 set :keep_releases, 5
 
@@ -24,13 +23,10 @@ set :keep_assets, 1 #manter apenas 1 backup dos assets
 
 namespace :deploy do
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+    # reinicia o passenger
+    task :restart do
+    	on roles(:app), :except => { :no_release => true } do
+        	run "cd #{current_path} && touch tmp/restart.txt"
+        end
     end
-  end
-
 end

@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   get "log-in" => "sessions#new", :as => "log-in"
   get "sign-up" => "users#new", :as => "sign-up"
 
-  resources :posts
+  resources :posts do
+  	resources :comments
+  end
+  
   resources :users
   resources :sessions
   root 'welcome#index'

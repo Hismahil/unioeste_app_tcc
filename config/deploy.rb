@@ -25,4 +25,4 @@ namespace :deploy do
 
 end
 
-after 'set_database_cfg', 'set_secrets_cfg', 'restart'
+after 'set_database_cfg', 'set_secrets_cfg', 'bundler:install', 'restart'

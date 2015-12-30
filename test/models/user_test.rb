@@ -7,7 +7,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "nao cria usuario sem informacoes" do
     user = create_user email: nil, password: nil
-    assert_not user.valid?, "O usuario nao pode ser criado"
+    assert user.valid?, "O usuario nao pode ser criado"
   end
 
   test "nao salva sem o email" do

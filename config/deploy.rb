@@ -8,9 +8,9 @@ set :deploy_to, '/var/www/unioeste_app_tcc'
 set :scm, :git
 
 #tem q ficar mudando essa linha
-role :app, %w{ec2-52-88-55-149.us-west-2.compute.amazonaws.com}
-role :web, %w{ec2-52-88-55-149.us-west-2.compute.amazonaws.com}
-role :db,  %w{ec2-52-88-55-149.us-west-2.compute.amazonaws.com}
+role :app, %w{ec2-52-88-161-44.us-west-2.compute.amazonaws.com}
+role :web, %w{ec2-52-88-161-44.us-west-2.compute.amazonaws.com}
+role :db,  %w{ec2-52-88-161-44.us-west-2.compute.amazonaws.com}
 
 set :keep_releases, 5
 

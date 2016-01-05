@@ -24,5 +24,3 @@ set :keep_assets, 1 #manter apenas 1 backup dos assets
 namespace :deploy do
 
 end
-
-after 'deploy:set_database_cfg', 'deploy:set_secrets_cfg', 'bundler:install', 'deploy:restart'

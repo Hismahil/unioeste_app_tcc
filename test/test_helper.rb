@@ -8,14 +8,14 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 
-  	def get_user
-		users = User.all
+  def get_user
+    users = User.all
 
-		if users.empty?
-			users = create_user
-		end
-		(users.class == Array ? users.first : users)
-	end
+    if users.empty?
+      users = create_user
+    end
+    (users.class == Array ? users.first : users)
+  end
 
 	def create_post(op = {})
 		Post.create({ title: 'Post teste', text: 'askllassssquiwioqwoqwiowqioqwioqwioqwqwioqwioqwioqwioqw',
@@ -24,7 +24,7 @@ class ActiveSupport::TestCase
 
   # cria um user para update, destroy, edit, show
 	def create_user(op = {})
-    User.create({email: generate_email, password: '123456'}.merge(op))
+    User.create({email: generate_email, password: '123456', password_confirmation: '123456'}.merge(op))
   end
 
   # para o metodo create (email e unico)

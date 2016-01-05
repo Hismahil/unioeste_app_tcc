@@ -8,13 +8,14 @@ class UsersControllerTest < ActionController::TestCase
 
   test "requisicao da action index do User" do
     get :index
-    assert_response :success
-    assert_not_nil assigns(:users)
+    assert_response :found
+    assert_redirected_to root_url
   end
 
   test "requisicao da action new do User" do
     get :new
     assert_response :success
+    assert_nil session[:user_id]
   end
 
   test "requisicao da action create do User" do
@@ -27,25 +28,31 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "requisicao da action show do User" do
+    session[:user_id] = @user.id
     get :show, id: @user
     assert_response :success
+    assert_equal session[:user_id], @user.id
   end
 
   test "requisicao da action edit do User" do
+    session[:user_id] = @user.id
     get :edit, id: @user
     assert_response :success
+    assert_equal session[:user_id], @user.id
   end
 
   test "requisicao da action update do User" do
+    session[:user_id] = @user.id
     patch :update, id: @user, user: { email: @user.email, password: @user.password, password_confirmation: @user.password }
     assert_redirected_to user_path(assigns(:user))
   end
 
   test "requisicao da action destroy do User" do
+    session[:user_id] = @user.id
     assert_difference('User.count', -1) do
       delete :destroy, id: @user
     end
 
-    assert_redirected_to users_path
+    assert_redirected_to log_out_path
   end
 end

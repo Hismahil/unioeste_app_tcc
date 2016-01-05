@@ -13,76 +13,58 @@
   
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
-    <%= csrf_meta_tags %>
-  <!--[if lt IE 9]>
-    <script src="assets/javascripts/ie.min.js"></script>
-  <![endif]-->
+  <%= csrf_meta_tags %>
 
+  <%= yield :js %>
+  <%= yield :css %>
+  
 </head>
-<body class="theme-default main-menu-animated">
-  <script>var init = [];</script>
-
-  <div id="main-wrapper">
-    <%= render partial: "layouts/nav" %>
-
-      
-    <div id="content-wrapper">
-      
-      <div id="main-menu-bg"></div>
-      
+<body>
+  <div class="container">
+    <nav class="navbar navbar-inverse">
       <div class="container-fluid">
-        
-        <div class="row">
-          
-          <div class="col-md-8">
-            <div class="panel colourable">
-              <div class="panel-heading">
-                <span class="panel-title"><i class="panel-title-icon fa fa-flask"></i>With icon</span>
-              </div>
-              <div class="panel-body">
-                <%= yield %>
-              </div>
-              <div class="panel-footer">Panel footer</div>
-            </div>
-          </div>
-          
-          <div class="col-md-4">
-            <div class="panel panel-success">
-              <div class="panel-heading">
-                <span class="panel-title">Panel - Success</span>
-                <div class="panel-heading-controls">
-                  <div class="panel-heading-icon"><i class="fa fa-inbox"></i></div>
-                </div>
-              </div>
-              <div class="panel-body">
-                Panel body content
-              </div>
-            </div>
-          </div>      
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#" class="navbar-brand">Blog</a>
         </div>
-      
-      </div>
-          
+
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">Support</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav pull-right">
+            <li class="dropdown">
+              <% if current_user %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Profile", user_path(current_user) %></li>
+                  <li><%= link_to "Log out", log_out_path %></li>
+                </ul>
+              <% else %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Sign up", sign_up_path %></li>
+                  <li><%= link_to "log in", log_in_path %></li>
+                </ul>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>  
+    </nav>
+
+    <div class="row">
+      <%= yield %>
     </div>
+        
   </div>
-
-  
-  
-  <!-- Get jQuery from Google CDN -->
-  <!--[if !IE]> -->
-    <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">'+"<"+"/script>"); </script>
-  <!-- <![endif]-->
-  <!--[if lte IE 9]>
-    <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
-  <![endif]-->
-
-  <!-- Pixel Admin's javascripts -->
-
-  <script type="text/javascript">
-    init.push(function () {
-      // Javascript code here
-    })
-    window.PixelAdmin.start(init);
-  </script>
 </body>
 </html>

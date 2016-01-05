@@ -1,13 +1,14 @@
-<%= form_for([@post, @post.comments.build]) do |f| %>
-	<p>
-		<%= f.label :email %>
-		<%= f.text_field :email %>
-	</p>
+<%= form_for([@post, @post.comments.build], class: 'form-horizontal') do |f| %>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="form-group">
+				<%= f.text_field :email, class: 'form-control', placeholder: 'E-mail' %>		
+			</div>
+			<div class="form-group">
+				<%= f.text_area :text, class: 'form-control' %>		
+			</div>
+		</div>
+		<div class="panel-footer"><%= f.submit class: 'btn btn-success' %></div>
+	</div>
 
-	<p>
-		<%= f.label :text %>
-		<%= f.text_area :text %>
-	<p>
-
-	<%= f.submit %>
 <% end %>

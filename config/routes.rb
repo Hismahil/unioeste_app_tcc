@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   get "log-out" => "sessions#destroy", :as => "log-out"
   get "log-in" => "sessions#new", :as => "log-in"
   get "sign-up" => "users#new", :as => "sign-up"
@@ -10,4 +11,5 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   root 'welcome#index'
+
 end

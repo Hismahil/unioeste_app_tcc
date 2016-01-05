@@ -11,12 +11,14 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'ckeditor'
+gem 'bootstrap-sass', '~> 3.1.1'
+gem "paperclip", "~> 4.3"
+
 
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
-  gem 'rspec-rails', '1.2.0'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano'
 	gem 'capistrano-ext'

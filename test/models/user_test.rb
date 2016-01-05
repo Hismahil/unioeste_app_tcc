@@ -6,27 +6,30 @@ class UserTest < ActiveSupport::TestCase
   # end
 
   test "nao cria usuario sem informacoes" do
-    user = create_user email: nil, password: nil
+    user = create_user email: nil, password: nil, password_confirmation: nil
+    assert user.errors[:email].any?
+    assert user.errors[:password].any?
+    assert_not user.errors[:password_confirmation].any?
     assert_not user.valid?, "O usuario nao pode ser criado"
   end
 
-  test "nao salva sem o email" do
-    user = create_user email: nil
-    assert_not_nil user.errors.messages[:email], "O email deve ser informado"
-    assert_not user.save
+  test "a senha e a confirmacao devem corresponder" do
+    user = create_user password: '123456', password_confirmation: '789010'
+    assert user.errors[:password_confirmation].any?
   end
 
-  test "nao salva sem a senha" do
-    user = create_user password: nil
-    assert_not_nil user.errors.messages[:password], "A senha deve ser informado"
-    assert_not user.save
+  test "verifica a autenticacao" do
+    user = create_user email: 'hismahilepd@gmail.com'
+
+    assert_nil User.authenticate('hismahil@gmail.com', '123')
+    assert User.authenticate('hismahilepd@gmail.com', '123456')
   end
 
   test "nao cria o mesmo usuario" do
-    user = create_user email: 'hismahil@gmail.com', password: '123456'
+    user = create_user email: 'hismahil@gmail.com'
     assert user.save
 
-    user = create_user email: 'hismahil@gmail.com', password: '123456'
+    user = create_user email: 'hismahil@gmail.com'
     assert_not user.save
   end
 

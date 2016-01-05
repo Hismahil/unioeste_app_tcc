@@ -1,19 +1,17 @@
-<p id="notice"><%= notice %></p>
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+	<table class="table">
+		<tr>
+			<td><%= image_tag @user.avatar if @user.avatar %></td>
+			<td><%= @user.email %></td>
+		</tr>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Password hash:</strong>
-  <%= @user.password_hash %>
-</p>
-
-<p>
-  <strong>Password salt:</strong>
-  <%= @user.password_salt %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+		<tr>
+			<td colspan="2">
+				<%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-warning' %>
+				<%= link_to 'Back', users_path, class: 'btn btn-default' %>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="col-sm-4"></div>

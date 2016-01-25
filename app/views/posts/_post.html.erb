@@ -1,5 +1,6 @@
-<div class="panel panel-default">
-	<div class="panel-heading"><h3><%= link_to post.title, post %></h3></div>
-	<div class="panel-body"><%= truncate(strip_tags(post.text), length: 200) %></div>
-	<div class="panel-footer">User: <%= post.user.email %> - Created At: <%= post.created_at %></div>
-</div>
+<h2><%= link_to post.title, post %></h2>
+<p class="lead">by <%= post.user.email %></p>
+<p><span class="glyphicon glyphicon-time"></span>Criado em <%= post.created_at %></p>
+<hr>
+<p><%= truncate(strip_tags(post.text), length: 200) %></p>
+<%= link_to 'Ler mais...', post %>

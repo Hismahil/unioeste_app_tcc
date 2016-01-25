@@ -1,25 +1,24 @@
-<div class="col-sm-10">
-	<div class="page-header">
-		<ul class="list-inline pull-right">
-			<li><%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-warning' if @is_owner %></li>
-			<li><%= link_to 'Back', root_path, class: 'btn btn-default' %></li>
-		</ul>
-		<h1><%= @post.title %></h1>
-	</div>
 
-	<%= @post.text.html_safe %>
-
-	<hr/>
-
-	<kbd>
-		Created by: <%= @post.user.email %>	
-	</kbd>
-		
-	<hr/>
-
-	<%= render @post.comments %>
-
-	<hr/>
-
-	<%= render 'comments/form' %>
+<div class="page-header">
+	<ul class="list-inline pull-right">
+		<li><%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-warning' if @is_owner %></li>
+		<li><%= link_to 'Back', root_path, class: 'btn btn-default' %></li>
+	</ul>
+	<h1><%= @post.title %></h1>
 </div>
+
+<%= @post.text.html_safe %>
+
+<hr/>
+
+<kbd>
+	Created by: <%= @post.user.email %>	
+</kbd>
+	
+<hr/>
+
+<%= render 'comments/form' %>
+
+<hr/>
+
+<%= render @post.comments %>

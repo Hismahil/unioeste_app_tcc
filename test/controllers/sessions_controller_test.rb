@@ -9,9 +9,6 @@ class SessionsControllerTest < ActionController::TestCase
     get :new
     assert_response :success
 
-    assert_select '.form-horizontal', 1 # verifica se existe um formulario
-    assert_select '.control-label', 2 # se tem dois labels
-    assert_select '.form-control', 2 # se tem dois inputs
     assert_select '#email', 1 # se tem um elemento com id email
     assert_select '#password', 1 # mesma coisa
   end

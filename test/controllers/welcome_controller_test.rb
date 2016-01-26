@@ -6,9 +6,6 @@ class WelcomeControllerTest < ActionController::TestCase
   	@post = create_post
     get :index
     assert_response :success
-
-    assert_select '.col-sm-10', 1
-    assert_select '.panel', 1
   end
 
 end

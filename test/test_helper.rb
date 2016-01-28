@@ -22,6 +22,10 @@ class ActiveSupport::TestCase
 			user: get_user}.merge(op))
 	end
 
+  def new_post
+    Post.new title: 'Post teste', text: 'askllassssquiwioqwoqwiowqioqwioqwioqwqwioqwioqwioqwioqwwqiooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo'
+  end
+
   # cria um user para update, destroy, edit, show
 	def create_user(op = {})
     User.create({email: generate_email, password: '123456', password_confirmation: '123456'}.merge(op))

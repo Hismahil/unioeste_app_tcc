@@ -16,6 +16,7 @@ class UsersControllerTest < ActionController::TestCase
     get :new
     assert_response :success
     assert_nil session[:user_id]
+    assert_template layout: "layouts/sign"
   end
 
   test "requisicao da action create do User" do

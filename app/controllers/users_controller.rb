@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout "sign", except: [:index, :show, :edit]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users

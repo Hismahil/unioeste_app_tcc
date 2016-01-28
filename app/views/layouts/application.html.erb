@@ -38,7 +38,9 @@
             <li><a href="#">Puppet</a></li>
             <li><a href="#">Python</a></li>
             <li><a href="#">C/C++</a></li>
-            <li><%= link_to 'Novo Post', new_post_path %></li>
+            <% if current_user %>
+              <li><%= link_to 'Novo Post', new_post_path %></li>
+            <% end %>
             <li><a href="#">Sobre</a></li>
           </ul>
 

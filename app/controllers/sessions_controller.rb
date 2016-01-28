@@ -1,9 +1,12 @@
 class SessionsController < ApplicationController
+	layout 'sign'
+
   	def new
   		
 	end
 
 	def create
+		reset_session
 	  user = User.authenticate(params[:email], params[:password])
 	  	
 	  if user

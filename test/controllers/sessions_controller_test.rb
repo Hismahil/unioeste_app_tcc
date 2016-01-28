@@ -8,7 +8,8 @@ class SessionsControllerTest < ActionController::TestCase
   test "renderiza a pagina de login new" do
     get :new
     assert_response :success
-
+    assert_template layout: "layouts/sign"
+    
     assert_select '#email', 1 # se tem um elemento com id email
     assert_select '#password', 1 # mesma coisa
   end

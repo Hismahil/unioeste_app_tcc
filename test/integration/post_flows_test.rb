@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PostFlowsTest < ActionDispatch::IntegrationTest
   
-  test "caso de uso criar um post" do
+  test "CN - criar um post" do
   	user = create_user
     
     # login 

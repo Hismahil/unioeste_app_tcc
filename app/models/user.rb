@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
 
 	validates_confirmation_of :password
 	validates_presence_of :password, :on => :create
-	validates_presence_of :email
-	validates_uniqueness_of :email
+	validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i, 
+		message: "email invalido" }, uniqueness: { case_sensitive: false }
 
 	# validacoes da imagem
 	has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png" 

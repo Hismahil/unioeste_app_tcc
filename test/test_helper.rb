@@ -33,9 +33,13 @@ class ActiveSupport::TestCase
 
   # para o metodo create (email e unico)
   def new_user(op = {})
-    User.new({email: generate_email, password: '123456'}.merge(op))
+    User.new({email: generate_email, password: '123456', password_confirmation: '123456'}.merge(op))
   end
 
+  def new_comment
+    {email: generate_email, text: 'novo comentario'}
+  end
+  
     def char
     	v = [ 'a', 'b', 'c', 'd' ]
     	v[rand(v.size)]

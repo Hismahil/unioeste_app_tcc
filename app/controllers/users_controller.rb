@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, :notice => "Signed up!" }
+        format.html { redirect_to root_url, :notice => "Signed up!" }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

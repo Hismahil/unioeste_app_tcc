@@ -25,7 +25,7 @@ class UsersControllerTest < ActionController::TestCase
       post :create, user: { email: @user_new.email, password: @user_new.password, password_confirmation: @user_new.password }
     end
     
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to root_url
   end
 
   test "requisicao da action show do User" do

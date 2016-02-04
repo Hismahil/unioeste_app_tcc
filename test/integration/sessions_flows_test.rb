@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SessionsFlowsTest < ActionDispatch::IntegrationTest
   
-  test "login via browse site" do
+  test "CN - login via browse site" do
   	user = create_user
     
     # login 

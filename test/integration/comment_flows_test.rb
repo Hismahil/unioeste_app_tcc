@@ -19,7 +19,7 @@ class CommentFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     
     # cria o post
-    post_via_redirect "/posts", post: {title: 'Post teste', text: 'askllassssquiwioqwoqwiowqioqwioqwioqwqwioqwioqwioqwioqwwqiooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo'}
+    post_via_redirect "/posts", post: new_post
     assert_equal "/posts/#{assigns(:post).id}", path #verifica se esta mostrando o post posts#show
     post_id = assigns(:post).id 	# salva o id do post
 

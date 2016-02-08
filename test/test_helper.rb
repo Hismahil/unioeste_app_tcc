@@ -18,12 +18,15 @@ class ActiveSupport::TestCase
   end
 
 	def create_post(op = {})
-		Post.create({ title: 'Post teste', text: 'askllassssquiwioqwoqwiowqioqwioqwioqwqwioqwioqwioqwioqw',
+		post = Post.create({ title: 'Post teste', text: 'askllassssquiwioqwoqwiowqioqwioqwioqwqwioqwioqwioqwioqw',
 			user: get_user}.merge(op))
+    post.categories << categories(:one)
+    post.save
+    post
 	end
 
   def new_post
-    Post.new title: 'Post teste', text: 'askllassssquiwioqwoqwiowqioqwioqwioqwqwioqwioqwioqwioqwwqiooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo'
+    { text: 'uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu', title: 'Tituloaaaaaasssssss', category_id: categories(:one).id }
   end
 
   # cria um user para update, destroy, edit, show

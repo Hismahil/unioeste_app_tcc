@@ -11,10 +11,15 @@
 
 <hr/>
 
-<kbd>
-	Created by: <%= @post.user.email %>	
-</kbd>
-	
+<p>Created by: <kbd><%= @post.user.email %></kbd></p>
+<p>
+	Tags: 
+<% @post.categories.each do |category| %>
+	<kbd><%= category.kind %> </kbd> 
+<% end %>
+</p>
+
+
 <hr/>
 
 <%= render 'comments/form' %>

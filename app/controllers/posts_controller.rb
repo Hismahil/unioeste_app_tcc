@@ -4,7 +4,9 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    redirect_to root_url
+    if params[:category]
+      @categorizations = Categorization.where(' category_id = ? ', params[:category])
+    end
   end
 
   # GET /posts/1
@@ -42,7 +44,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    
+    @post.categories << Category.find(params[:post][:category_id])
+
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class PostFlowsTest < ActionDispatch::IntegrationTest
-  
+
   test "CN - criar um post" do
   	user = create_user
     
@@ -19,8 +19,20 @@ class PostFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     
     # cria o post
-    post_via_redirect "/posts", post: {title: 'Post teste', text: 'askllassssquiwioqwoqwiowqioqwioqwioqwqwioqwioqwioqwioqwwqiooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo'}
+    post_via_redirect "/posts", post: new_post
     assert_equal "/posts/#{assigns(:post).id}", path #verifica se esta mostrando o post posts#show
 
+  end
+
+  test "CN - post por categoria" do
+ 
+    post = create_post # cria um post para exibir
+
+    https!
+    get "/posts?category=#{categories(:one).id}" # chama posts#index filtrando pela categoria
+    assert_response :success
+
+    assert_select 'h2', post.title # verifica o titulo do post
+    assert_select 'p', 4 # outros elementos
   end
 end

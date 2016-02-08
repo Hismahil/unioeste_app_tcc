@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  kind: C/C++
+
+two:
+  kind: Ruby
+
+three:
+  kind: Puppet
+
+four:
+  kind: Phyton

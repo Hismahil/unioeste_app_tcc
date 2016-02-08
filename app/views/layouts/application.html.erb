@@ -34,10 +34,11 @@
 
         <div class="collapse navbar-collapse" id="menu">
           <ul class="nav navbar-nav">
-            <li><a href="#">Ruby</a></li>
-            <li><a href="#">Puppet</a></li>
-            <li><a href="#">Python</a></li>
-            <li><a href="#">C/C++</a></li>
+            <% Category.all.each do |category| %>
+              <li>
+                  <%= link_to category.kind, posts_path(category: category.id) %>
+              </li>
+            <% end %>
             <% if current_user %>
               <li><%= link_to 'Novo Post', new_post_path %></li>
             <% end %>
@@ -85,14 +86,11 @@
           <div class="row">
             <div class="col-lg-6">
               <ul class="list-unstyled">
-                <li><a href="#">Ruby</a>
-                </li>
-                <li><a href="#">Puppet</a>
-                </li>
-                <li><a href="#">Python</a>
-                </li>
-                <li><a href="#">C/C++</a>
-                </li>
+                <% Category.all.each do |category| %>
+                  <li>
+                    <%= link_to category.kind, posts_path(category: category.id) %>
+                  </li>
+                <% end %>
               </ul>
             </div>
             

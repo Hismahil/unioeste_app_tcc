@@ -18,7 +18,11 @@
   <div class="from-group col-sm-12">
     <%= f.cktext_area :text, class: 'form-control' %>
   </div>
-  
+  <div class="form-group col-sm-4" style="margin: 10px auto;">
+    <%= f.label "Category", class: 'control-label' %>
+    <%= f.select :category_id, Category.all.map { |e| [e.kind, e.id] }, {}, {class: 'form-control'} %>
+  </div>
+
   <div class="form-group col-sm-12" style="margin: 10px auto;">
     <%= f.submit class: 'btn btn-primary' %>
   </div>

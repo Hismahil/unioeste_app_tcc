@@ -1,0 +1,6 @@
+<h2><%= link_to categorization.post.title, categorization.post %></h2>
+<p class="lead">by <%= categorization.post.user.email %></p>
+<p><span class="glyphicon glyphicon-time"></span>Criado em <%= categorization.post.created_at %></p>
+<hr>
+<p><%= truncate(strip_tags(categorization.post.text), length: 200) %></p>
+<%= link_to 'Ler mais...', categorization.post %>

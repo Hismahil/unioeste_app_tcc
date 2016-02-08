@@ -4,13 +4,15 @@ class PostsControllerTest < ActionController::TestCase
   setup do
     @post = create_post
     @user = @post.user
-    @update = { text: 'uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu', title: 'Tituloaaaaaasssssss'}
+    @update = new_post
   end
 
   test "requisicao da action index do Post" do
-    get :index
-    assert_response :found
-    assert_redirected_to root_url
+    get :index, { category: @post.categories.first.id }
+    assert_response :success
+    
+    assert_select 'h2', @post.title
+    assert_select 'p', 4
   end
 
   test "requisicao da action new do Post" do

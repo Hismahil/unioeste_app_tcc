@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231142404) do
+ActiveRecord::Schema.define(version: 20160207181848) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "kind",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "categorizations", force: :cascade do |t|
+    t.integer  "post_id",     limit: 4
+    t.integer  "category_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "categorizations", ["category_id"], name: "index_categorizations_on_category_id", using: :btree
+  add_index "categorizations", ["post_id"], name: "index_categorizations_on_post_id", using: :btree
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",    limit: 255, null: false
@@ -61,6 +77,8 @@ ActiveRecord::Schema.define(version: 20151231142404) do
     t.datetime "avatar_updated_at"
   end
 
+  add_foreign_key "categorizations", "categories"
+  add_foreign_key "categorizations", "posts"
   add_foreign_key "comments", "posts"
   add_foreign_key "posts", "users"
 end

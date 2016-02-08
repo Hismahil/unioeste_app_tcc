@@ -24,6 +24,33 @@ class PostFlowsTest < ActionDispatch::IntegrationTest
 
   end
 
+  test "CN - criar um post sem estar logado" do
+    
+    https!
+    get "/posts/new" #chama posts#new
+    assert_response :found # redirect
+    
+    https!
+    get '/'
+    assert_response :success
+    assert_select '#notice', "You cannot create post without be user" # mensagem
+
+  end
+
+  test "CN - visualizar um post que não existe" do
+    
+    https!
+    get "/posts/23456" #chama posts#new
+    assert_response :found # redirect
+    
+    https!
+    get '/'
+    assert_response :success
+
+    assert_select '#notice', 'Post not found!' # mensagem
+
+  end
+
   test "CN - post por categoria" do
  
     post = create_post # cria um post para exibir

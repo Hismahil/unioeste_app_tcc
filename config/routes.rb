@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :categories
+  
   mount Ckeditor::Engine => '/ckeditor'
   get "log-out" => "sessions#destroy", :as => "log-out"
   get "log-in" => "sessions#new", :as => "log-in"

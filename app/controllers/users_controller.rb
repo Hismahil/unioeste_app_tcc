@@ -11,11 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    if current_user == nil
-      redirect_to root_url, notice: 'You cannot show other user'
-    end
-    
-    if current_user and current_user.id != @user.id
+    if @user == nil or current_user == nil or (current_user and current_user.id != @user.id)
       redirect_to root_url, notice: 'You cannot show other user'
     end
   end
@@ -88,7 +84,11 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      begin
+        @user = User.find(params[:id])
+      rescue 
+        logger.info "Usuário não encontrado"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

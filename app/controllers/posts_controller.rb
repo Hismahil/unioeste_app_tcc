@@ -12,11 +12,15 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    if @post == nil
+      redirect_to root_url, notice: 'Post not found!'
+    end
+
     @is_owner = if current_user and current_user.id == @post.user.id then
-        true
-      else
-        false
-      end
+      true
+    else
+      false
+    end
   end
 
   # GET /posts/new
@@ -89,7 +93,11 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      begin
+        @post = Post.find(params[:id])
+      rescue
+        logger.info('Post não encontrado')
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

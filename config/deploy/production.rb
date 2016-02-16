@@ -60,7 +60,7 @@
 #     # password: 'please use keys'
 #   }
 
-server "ec2-52-34-205-250.us-west-2.compute.amazonaws.com", 
+server "ec2-52-36-169-191.us-west-2.compute.amazonaws.com", 
 	user: 'ubuntu',
 	roles: %w(app web db), 
 	ssh_options: {

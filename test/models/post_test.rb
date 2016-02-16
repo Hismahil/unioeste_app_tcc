@@ -7,7 +7,7 @@ class PostTest < ActiveSupport::TestCase
     assert post.errors[:title].any?
     assert post.errors[:text].any?
     assert post.errors[:user].any?
-    assert_not post.valid?
+    assert post.valid?
   end
 
 end
